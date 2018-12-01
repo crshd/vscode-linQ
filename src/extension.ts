@@ -36,19 +36,20 @@ function insertLink() {
     }
 
     editor.edit(edit => {
-      if (editor === undefined) {
-        return;
+      if (editor !== undefined) {
+        editor.selections.forEach(selection => {
+          /* I'm fucking sure it's not undefined by now */
+          if (editor !== undefined) {
+            edit.delete(selection);
+            edit.insert(
+              selection.start,
+              `<a href="${pick.detail}" title="Gehe zu: ${
+                pick.label
+              }">${editor.document.getText(selection)}</a>`
+            );
+          }
+        });
       }
-
-      editor.selections.forEach(selection => {
-        edit.delete(selection);
-        edit.insert(
-          selection.start,
-          `<a href="${pick.detail}" title="Gehe zu: ${
-            pick.label
-          }">${editor.document.getText(selection)}</a>`
-        );
-      });
     });
   });
 }
