@@ -33,6 +33,10 @@ function parseSitemap(file: string) {
 function insertLink() {
   let editor = vscode.window.activeTextEditor;
 
+  if (links.length < 0) {
+    registerSitemap();
+  }
+
   vscode.window.showQuickPick(links).then(pick => {
     if (!pick || editor === undefined) {
       return;
