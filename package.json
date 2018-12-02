@@ -11,18 +11,19 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.registerSitemap"
+    "onCommand:extension.registerSitemap",
+    "onCommand:extension.insertLink"
   ],
   "main": "./out/extension",
   "contributes": {
     "commands": [
       {
         "command": "extension.registerSitemap",
-        "title": "Register Sitemap"
+        "title": "linQ: Register Sitemap"
       },
       {
         "command": "extension.insertLink",
-        "title": "Insert Link"
+        "title": "linQ: Insert Link"
       }
     ]
   },

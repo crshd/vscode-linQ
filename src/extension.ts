@@ -6,6 +6,22 @@ import { parse } from "node-html-parser";
 
 let links: vscode.QuickPickItem[] = [];
 
+function registerSitemap() {
+  const options: vscode.OpenDialogOptions = {
+    canSelectMany: false,
+    openLabel: "Open Sitemap HTML",
+    filters: {
+      "Text files": ["html"]
+    }
+  };
+
+  vscode.window.showOpenDialog(options).then(value => {
+    if (value !== null && value !== undefined) {
+      parseSitemap(value[0].fsPath);
+    }
+  });
+}
+
 // Parse sitemap.xml
 function parseSitemap(file: string) {
   vscode.workspace.openTextDocument(file).then(html => {
@@ -33,7 +49,7 @@ function parseSitemap(file: string) {
 function insertLink() {
   let editor = vscode.window.activeTextEditor;
 
-  if (links.length < 0) {
+  if (links.length === 0) {
     registerSitemap();
   }
 
@@ -50,30 +66,14 @@ function insertLink() {
             edit.delete(selection);
             edit.insert(
               selection.start,
-              `<a href="${pick.detail}" title="Gehe zu: ${pick.label}">
-              ${editor.document.getText(selection)}
-              </a>`
+              `<a href="${pick.detail}" title="Gehe zu: ${pick.label}">` +
+                editor.document.getText(selection) +
+                "</a>"
             );
           }
         });
       }
     });
-  });
-}
-
-function registerSitemap() {
-  const options: vscode.OpenDialogOptions = {
-    canSelectMany: false,
-    openLabel: "Open Sitemap HTML",
-    filters: {
-      "Text files": ["html"]
-    }
-  };
-
-  vscode.window.showOpenDialog(options).then(value => {
-    if (value !== null && value !== undefined) {
-      parseSitemap(value[0].fsPath);
-    }
   });
 }
 
