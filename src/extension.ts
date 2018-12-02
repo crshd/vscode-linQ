@@ -43,9 +43,9 @@ function insertLink() {
             edit.delete(selection);
             edit.insert(
               selection.start,
-              `<a href="${pick.detail}" title="Gehe zu: ${
-                pick.label
-              }">${editor.document.getText(selection)}</a>`
+              `<a href="${pick.detail}" title="Gehe zu: ${pick.label}">
+              ${editor.document.getText(selection)}
+              </a>`
             );
           }
         });
