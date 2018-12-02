@@ -6,12 +6,31 @@ import { parse } from "node-html-parser";
 
 let links: vscode.QuickPickItem[] = [];
 
+function registerSitemap() {
+  const options: vscode.OpenDialogOptions = {
+    canSelectMany: false,
+    openLabel: "Open Sitemap HTML",
+    filters: {
+      "Text files": ["html"]
+    }
+  };
+
+  vscode.window.showOpenDialog(options).then(value => {
+    if (value !== null && value !== undefined) {
+      parseSitemap(value[0].fsPath);
+    }
+  });
+}
+
 // Parse sitemap.xml
 function parseSitemap(file: string) {
   vscode.workspace.openTextDocument(file).then(html => {
     const dom = parse(html.getText());
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
     const base: string = map[0].attributes.href;
+
+    // clean old sitemap
+    links = [];
 
     map.forEach((link: any) => {
       let linkUrl: string =
@@ -30,6 +49,10 @@ function parseSitemap(file: string) {
 function insertLink() {
   let editor = vscode.window.activeTextEditor;
 
+  if (links.length === 0) {
+    registerSitemap();
+  }
+
   vscode.window.showQuickPick(links).then(pick => {
     if (!pick || editor === undefined) {
       return;
@@ -43,9 +66,9 @@ function insertLink() {
             edit.delete(selection);
             edit.insert(
               selection.start,
-              `<a href="${pick.detail}" title="Gehe zu: ${
-                pick.label
-              }">${editor.document.getText(selection)}</a>`
+              `<a href="${pick.detail}" title="Gehe zu: ${pick.label}">` +
+                editor.document.getText(selection) +
+                "</a>"
             );
           }
         });
@@ -53,26 +76,11 @@ function insertLink() {
     });
   });
 }
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  // let disposable = vscode.commands.registerCommand(
-  vscode.commands.registerCommand("extension.registerSitemap", () => {
-    const options: vscode.OpenDialogOptions = {
-      canSelectMany: false,
-      openLabel: "Open Sitemap HTML",
-      filters: {
-        "Text files": ["html"]
-      }
-    };
-
-    vscode.window.showOpenDialog(options).then(value => {
-      if (value !== null && value !== undefined) {
-        parseSitemap(value[0].fsPath);
-      }
-    });
-  });
-
+  vscode.commands.registerCommand("extension.registerSitemap", registerSitemap);
   vscode.commands.registerCommand("extension.insertLink", insertLink);
 }
 
