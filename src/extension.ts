@@ -48,7 +48,7 @@ function parseSitemap(file: string) {
 // Insert link
 function insertLink() {
   let editor = vscode.window.activeTextEditor;
-  let label;
+  let label: string;
 
   if (links.length === 0) {
     registerSitemap();
@@ -59,8 +59,8 @@ function insertLink() {
       return;
     }
 
-    if (pick.detail.indexOf('gw_') >= 0) {
-      label = links.find(l => l.detail.indexOf('gw_') >= 0)['id'];
+    if (pick.detail !== undefined && pick.detail.indexOf('gw_') >= 0) {
+      label = links.find((l: any) => l.detail.indexOf('gw_') >= 0)['id'];
     } else {
       label = pick.label;
     }
