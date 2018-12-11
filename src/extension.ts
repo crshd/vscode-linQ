@@ -27,7 +27,7 @@ function parseSitemap(file: string) {
   vscode.workspace.openTextDocument(file).then(html => {
     const dom = parse(html.getText());
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
-    const base: string = map[0].attributes.href === '/home.aspx' ? 'http:' : map[0].attributes.href.replace('..', '');
+    const base: string = map[0].attributes.href === '/home.aspx' ? 'http:' : map[0].attributes.href;
 
     // clean old sitemap
     links = [];
@@ -36,7 +36,7 @@ function parseSitemap(file: string) {
       let linkUrl: string =
         link.attributes.href === base
           ? link.attributes.href
-          : base + link.attributes.href;
+          : base + link.attributes.href.replace('..','');
       links.push({
         label: link.text,
         detail: linkUrl
@@ -60,7 +60,7 @@ function insertLink() {
     }
 
     if (pick.detail !== undefined && pick.detail.indexOf('gw_') >= 0) {
-      label = links.find((l: any) => l.detail.indexOf('gw_') >= 0)['id'];
+      label = links.find((l: any) => l.detail.indexOf('gw_') >= 0)['label'];
     } else {
       label = pick.label;
     }
