@@ -27,7 +27,7 @@ function parseSitemap(file: string) {
   vscode.workspace.openTextDocument(file).then(html => {
     const dom = parse(html.getText());
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
-    const base: string = map[0].attributes.href;
+    const base: string = map[0].attributes.href === '/home.aspx' ? 'http:' : map[0].attributes.href;
 
     // clean old sitemap
     links = [];
@@ -48,6 +48,7 @@ function parseSitemap(file: string) {
 // Insert link
 function insertLink() {
   let editor = vscode.window.activeTextEditor;
+  let label;
 
   if (links.length === 0) {
     registerSitemap();
@@ -58,6 +59,12 @@ function insertLink() {
       return;
     }
 
+    if (pick.label.indexOf('gw_') >= 0) {
+      label = links.find(l => l.detail.indexOf('gw_') >= 0)['id'];
+    } else {
+      label = pick.label;
+    }
+
     editor.edit(edit => {
       if (editor !== undefined) {
         editor.selections.forEach(selection => {
@@ -66,7 +73,7 @@ function insertLink() {
             edit.delete(selection);
             edit.insert(
               selection.start,
-              `<a href="${pick.detail}" title="Gehe zu: ${pick.label}">` +
+              `<a href="${pick.detail}" title="Gehe zu: ${label}">` +
                 editor.document.getText(selection) +
                 "</a>"
             );
