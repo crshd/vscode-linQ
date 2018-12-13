@@ -29,6 +29,9 @@ function parseSitemap(file: string) {
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
     const base: string = (map[0].attributes.href === '/home.aspx' || map[0].attributes.href.indexOf('..') >=0) ? 'http:' : map[0].attributes.href;
 
+    console.log(map[0]);
+    console.log(base);
+    
     // clean old sitemap
     links = [];
 
