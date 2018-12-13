@@ -6,6 +6,10 @@ import { parse } from "node-html-parser";
 
 let links: vscode.QuickPickItem[] = [];
 
+function hrefContains(href, term) {
+  return href.indexOf(term) >= 0;
+}
+
 function registerSitemap() {
   const options: vscode.OpenDialogOptions = {
     canSelectMany: false,
@@ -28,6 +32,8 @@ function parseSitemap(file: string) {
     const dom = parse(html.getText());
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
     const base: string = (map[0].attributes.href === '/home.aspx' || map[0].attributes.href.indexOf('scripts/show.aspx') >=0) ? 'http:' : map[0].attributes.href;
+    console.log(map[0].attributes.href);
+    console.log(map[1].attributes.href);
     
     // clean old sitemap
     links = [];
