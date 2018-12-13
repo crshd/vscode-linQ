@@ -44,7 +44,7 @@ function parseSitemap(file: string) {
       let path: string = link.attributes.href
         .replace('/scripts/show.aspx?content=', '')
         .replace('..', '')
-        .replace(/http:\/\/.*?\//, '/');
+        .replace(/https?:\/\/.*?\//, '/');
 
       let linkUrl: string = base + path;
       /**
