@@ -46,7 +46,7 @@ function parseSitemap(file: string) {
         .replace('..', '')
         .replace(/http:\/\/.*?\//, '/');
 
-      let linkUrl: string = base + link.attributes.href;
+      let linkUrl: string = base + path;
       /**
         link.attributes.href === base
           ? link.attributes.href
