@@ -6,10 +6,6 @@ import { parse } from "node-html-parser";
 
 let links: vscode.QuickPickItem[] = [];
 
-function hrefContains(href, term) {
-  return href.indexOf(term) >= 0;
-}
-
 function registerSitemap() {
   const options: vscode.OpenDialogOptions = {
     canSelectMany: false,
