@@ -42,10 +42,12 @@ function parseSitemap(file: string) {
     links = [];
 
     map.forEach((link: any) => {
-      let linkUrl: string =
+      let linkUrl: string = link.attributes.href;
+      /**
         link.attributes.href === base
           ? link.attributes.href
           : base + link.attributes.href.replace('..','');
+       */
       links.push({
         label: link.text,
         detail: linkUrl
