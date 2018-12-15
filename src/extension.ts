@@ -27,16 +27,31 @@ function parseSitemap(file: string) {
   vscode.workspace.openTextDocument(file).then(html => {
     const dom = parse(html.getText());
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
-    const base: string = map[0].attributes.href;
-
+    const base: string = (function() {
+      if ( map[0].attributes.href === '/home.aspx'
+         || map[0].attributes.href.indexOf('scripts/show.aspx') >= 0
+         || map[0].attributes.href.indexOf('..') >= 0) {
+        return 'http:/scripts/show.aspx?content=';
+      } else {
+        return map[0].attributes.href;
+      }
+    })();
+    
     // clean old sitemap
     links = [];
 
     map.forEach((link: any) => {
-      let linkUrl: string =
+      let path: string = link.attributes.href
+        .replace('/scripts/show.aspx?content=', '')
+        .replace('..', '')
+        .replace(/https?:\/\/.*?\//, '');
+
+      let linkUrl: string = base + path;
+      /**
         link.attributes.href === base
           ? link.attributes.href
-          : base + link.attributes.href;
+          : base + link.attributes.href.replace('..','');
+       */
       links.push({
         label: link.text,
         detail: linkUrl
@@ -48,6 +63,7 @@ function parseSitemap(file: string) {
 // Insert link
 function insertLink() {
   let editor = vscode.window.activeTextEditor;
+  let label: string;
 
   if (links.length === 0) {
     registerSitemap();
@@ -58,6 +74,12 @@ function insertLink() {
       return;
     }
 
+    if (pick.detail !== undefined && pick.detail.indexOf('gw_') >= 0) {
+      label = links.find((l: any) => l.detail.indexOf('gw_') >= 0)['label'];
+    } else {
+      label = pick.label;
+    }
+
     editor.edit(edit => {
       if (editor !== undefined) {
         editor.selections.forEach(selection => {
@@ -66,7 +88,7 @@ function insertLink() {
             edit.delete(selection);
             edit.insert(
               selection.start,
-              `<a href="${pick.detail}" title="Gehe zu: ${pick.label}">` +
+              `<a href="${pick.detail}" title="Gehe zu: ${label}">` +
                 editor.document.getText(selection) +
                 "</a>"
             );
