@@ -94,6 +94,16 @@ function insertLink() {
                 editor.document.getText(selection) +
                 "</a>"
             );
+
+            // remove annotation
+            let start: vscode.Position = selection.end;
+            let end: vscode.Position = editor.document.lineAt(start.line).range
+              .end;
+            let range: vscode.Range = new vscode.Range(start, end);
+            let replacedText: string = editor.document
+              .getText(range)
+              .replace(/\[.*?\]/, "");
+            edit.replace(range, replacedText);
           }
         });
       }
