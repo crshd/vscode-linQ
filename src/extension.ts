@@ -27,37 +27,39 @@ function parseSitemap(file: string) {
   vscode.workspace.openTextDocument(file).then(html => {
     const dom = parse(html.getText());
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
-    const base: string = (function() {
-      if ( map[0].attributes.href === '/home.aspx'
-         || map[0].attributes.href.indexOf('scripts/show.aspx') >= 0
-         || map[0].attributes.href.indexOf('..') >= 0) {
-        return 'http:/scripts/show.aspx?content=';
-      } else {
-        return map[0].attributes.href;
-      }
-    })();
-    
+    const base: string = getUrlBase(map[0].attributes.href)();
+
     // clean old sitemap
     links = [];
 
     map.forEach((link: any) => {
       let path: string = link.attributes.href
-        .replace('/scripts/show.aspx?content=', '')
-        .replace('..', '')
-        .replace(/https?:\/\/.*?\//, '');
+        .replace("/scripts/show.aspx?content=", "")
+        .replace("..", "")
+        .replace(/https?:\/\/.*?\//, "");
 
-      let linkUrl: string = base + path;
-      /**
-        link.attributes.href === base
-          ? link.attributes.href
-          : base + link.attributes.href.replace('..','');
-       */
+      let linkUrl: string = base === path ? base : base + path;
+
       links.push({
         label: link.text,
         detail: linkUrl
       });
     });
   });
+}
+
+function getUrlBase(map: string) {
+  return function() {
+    if (
+      map === "/home.aspx" ||
+      map.indexOf("scripts/show.aspx") >= 0 ||
+      map.indexOf("..") >= 0
+    ) {
+      return "http:/scripts/show.aspx?content=";
+    } else {
+      return map;
+    }
+  };
 }
 
 // Insert link
@@ -74,8 +76,8 @@ function insertLink() {
       return;
     }
 
-    if (pick.detail !== undefined && pick.detail.indexOf('gw_') >= 0) {
-      label = links.find((l: any) => l.detail.indexOf('gw_') >= 0)['label'];
+    if (pick.detail !== undefined && pick.detail.indexOf("gw_") >= 0) {
+      label = links.find((l: any) => l.detail.indexOf("gw_") >= 0)["label"];
     } else {
       label = pick.label;
     }
