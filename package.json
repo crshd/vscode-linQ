@@ -4,6 +4,10 @@
   "displayName": "linQ",
   "description": "",
   "version": "0.2.2",
+  "repository": {
+    "type": "git",
+    "url": "https://git.gamkee.de/ieQ-health/linQ.git"
+  },
   "engines": {
     "vscode": "^1.27.0"
   },
