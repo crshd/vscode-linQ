@@ -35,10 +35,10 @@ function parseSitemap(file: string) {
     map.forEach((link: any) => {
       let path: string = link.attributes.href
         .replace("/scripts/show.aspx?content=", "")
-        .replace("..", "")
+        .replace(/\.\.\/?/, "")
         .replace(/https?:\/\/.*?\//, "");
 
-      let linkUrl: string = base === path ? base : base + path;
+      let linkUrl: string = path === "" ? base : base + "/" + path;
 
       links.push({
         label: link.text,
