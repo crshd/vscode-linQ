@@ -102,7 +102,7 @@ function insertLink() {
             let range: vscode.Range = new vscode.Range(start, end);
             let replacedText: string = editor.document
               .getText(range)
-              .replace(/\[.*?\]/, "");
+              .replace(/\s*\[.*?\]\s*/, " ");
             edit.replace(range, replacedText);
           }
         });
