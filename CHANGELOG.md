@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [Unreleased]
+### Added
+- Changelog
+- Readme preparation section
+
 ## [0.2.3] - 2018-12-18
 ### Changed
 - Did some light refactoring
