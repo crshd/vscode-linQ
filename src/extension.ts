@@ -33,19 +33,36 @@ function parseSitemap(file: string) {
     links = [];
 
     map.forEach((link: any) => {
-      let path: string = link.attributes.href
-        .replace("/scripts/show.aspx?content=", "")
-        .replace(/\.\.\/?/, "")
-        .replace(/https?:\/\/.*?\//, "");
-
-      let linkUrl: string = path === "" ? base : base + "/" + path;
-
       links.push({
         label: link.text,
-        detail: linkUrl
+        detail: buildLink(base, getUrlPath(link.attributes.href))
       });
     });
   });
+}
+
+function buildLink(base: string, path: string) {
+  let link: string = '';
+
+  switch (path) {
+    case "":
+      link = base; break;
+  
+    case "home.aspx":
+      link = "http:/home.aspx"; break;
+
+    default:
+      link = base + "/" + path; break;
+  }
+
+  return link;
+}
+
+function getUrlPath(href: string) {
+  return href
+    .replace("/scripts/show.aspx?content=", "")
+    .replace(/\.\.\/?/, "")
+    .replace(/https?:\/\/.*?\//, "");
 }
 
 function getUrlBase(map: string) {
