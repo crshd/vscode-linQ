@@ -52,7 +52,9 @@ function buildLink(base: string, path: string) {
       link = "http:/home.aspx"; break;
 
     default:
-      link = (base + "/" + path).replace("//", "/"); break;
+      base = base.replace(/\/$/, '');
+      path = path.replace(/^\//, '');
+      link = (base + "/" + path); break;
   }
 
   return link;
