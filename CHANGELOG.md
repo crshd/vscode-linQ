@@ -1,7 +1,11 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
-## [Unreleased]
+## [0.2.5] - 2019-01-04
+### Fixed
+- Fixed removing double slashes in URLs
+
+## [0.2.4] - 2018-12-21
 ### Added
 - Changelog
 - Readme preparation section
