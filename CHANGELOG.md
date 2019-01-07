@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.3.1] - 2019-01-04
+### Fixed
+- Fixed generation of links when onlinedental and home in sitemap
+
 ## [0.3.0] - 2019-01-07
 ### Added
 - New command: replace link
