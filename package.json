@@ -3,7 +3,7 @@
   "name": "linq",
   "displayName": "linQ",
   "description": "",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "https://git.gamkee.de/ieQ-health/linQ.git"
@@ -28,6 +28,10 @@
       {
         "command": "extension.insertLink",
         "title": "linQ: Insert Link"
+      },
+      {
+        "command": "extension.replaceLink",
+        "title": "linQ: Replace Link"
       }
     ]
   },
