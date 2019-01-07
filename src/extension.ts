@@ -130,11 +130,45 @@ function insertLink() {
   });
 }
 
+// Replace link URL
+function replaceLink() {
+  let editor = vscode.window.activeTextEditor;
+  let label: string;
+
+  vscode.window.showQuickPick(links).then(pick => {
+    if (!pick || editor === undefined) {
+      return;
+    }
+
+    if (pick.detail !== undefined && pick.detail.indexOf("gw_") >= 0) {
+      label = links.find((l: any) => l.detail.indexOf("gw_") >= 0)["label"];
+    } else {
+      label = pick.label;
+    }
+
+    editor.edit(edit => {
+      if (editor !== undefined) {
+        editor.selections.forEach(selection => {
+          let start: vscode.Position = editor.document.lineAt(selection.start.line).range.start;
+          let end: vscode.Position = selection.start;
+          let range: vscode.Range = new vscode.Range(start, end);
+          let replacedText: string = editor.document
+            .getText(range)
+            .replace(/(http:[^"]+)(((?!http).)*)$/, `${pick.detail}$2`)
+            .replace(/(Gehe zu:[^"]+)(((?!Gehe zu:).)*)$/, `Gehe zu: ${label}$2`);
+          edit.replace(range, replacedText);
+        });
+      }
+    });
+  });
+}
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   vscode.commands.registerCommand("extension.registerSitemap", registerSitemap);
   vscode.commands.registerCommand("extension.insertLink", insertLink);
+  vscode.commands.registerCommand("extension.replaceLink", replaceLink);
 }
 
 // this method is called when your extension is deactivated
