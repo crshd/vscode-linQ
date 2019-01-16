@@ -3,6 +3,7 @@ image: node:4.2.2
 publish:
   script:
     - npm install -g vsce
+    - npm install
     - vsce publish -p $PAT
   only:
     - master
