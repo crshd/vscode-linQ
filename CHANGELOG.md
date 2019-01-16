@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.3.3] - 2019-01-16
+### Fixed
+- Fixed generation of /./ in the path for some users
+
 ## [0.3.1] - 2019-01-04
 ### Fixed
 - Fixed generation of links when onlinedental and home in sitemap

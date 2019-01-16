@@ -57,7 +57,7 @@ function buildLink(base: string, path: string) {
       link = (base + "/" + path); break;
   }
 
-  return link;
+  return link.replace(/\/\.\//, '/'); // Fix stuff for a certain someone
 }
 
 function getUrlPath(href: string) {
