@@ -63,7 +63,7 @@ function buildLink(base: string, path: string) {
 function getUrlPath(href: string) {
   return href
     .replace("/scripts/show.aspx?content=", "")
-    .replace(/\.\.\/?/, "")
+    .replace(/^\.+\/?/, "")
     .replace(/https?:\/\/.*?\//, "");
 }
 
