@@ -15,22 +15,22 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.registerSitemap",
-    "onCommand:extension.insertLink"
+    "onCommand:linq.registerSitemap",
+    "onCommand:linq.insertLink"
   ],
   "main": "./out/extension",
   "contributes": {
     "commands": [
       {
-        "command": "extension.registerSitemap",
+        "command": "linq.registerSitemap",
         "title": "linQ: Register Sitemap"
       },
       {
-        "command": "extension.insertLink",
+        "command": "linq.insertLink",
         "title": "linQ: Insert Link"
       },
       {
-        "command": "extension.replaceLink",
+        "command": "linq.replaceLink",
         "title": "linQ: Replace Link"
       }
     ]

@@ -169,9 +169,9 @@ function replaceLink() {
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  vscode.commands.registerCommand("extension.registerSitemap", registerSitemap);
-  vscode.commands.registerCommand("extension.insertLink", insertLink);
-  vscode.commands.registerCommand("extension.replaceLink", replaceLink);
+  vscode.commands.registerCommand("linq.registerSitemap", registerSitemap);
+  vscode.commands.registerCommand("linq.insertLink", insertLink);
+  vscode.commands.registerCommand("linq.replaceLink", replaceLink);
 }
 
 // this method is called when your extension is deactivated
