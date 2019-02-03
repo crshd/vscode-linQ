@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.4.0] - 2019-02-03
+### Changed
+- Changed namespace to "linq"
+
 ## [0.3.3] - 2019-01-16
 ### Fixed
 - Fixed generation of /./ in the path for some users
