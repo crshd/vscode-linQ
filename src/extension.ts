@@ -54,6 +54,9 @@ function buildLink(base: string, path: string) {
     case "scripts/hrskalender.aspx":
       link = "http:/scripts/hrskalender.aspx"; break;
 
+    case "scripts/yaHRSKalender.aspx":
+      link = "http:/scripts/yaHRSKalender.aspx"; break;
+
     default:
       base = (base.indexOf('home.aspx') >= -1) ? 'http:/scripts/show.aspx?content=' : base.replace(/\/$/, '');
       path = path.replace(/^\//, '');
