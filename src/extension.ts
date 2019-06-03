@@ -524,7 +524,8 @@ function insertLink() {
             let range: vscode.Range = new vscode.Range(start, end);
             let replacedText: string = editor.document
               .getText(range)
-              .replace(/\s*\[.*?\]\s*/, " ");
+              .replace(/\s*\[.*?\]\s*/, " ")
+              .replace(/\.\s+</, ".<");
             edit.replace(range, replacedText);
           }
         });

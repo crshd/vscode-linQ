@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.5.2] - 2019-06-03
+### Fixed
+- Remove extra spaces between period and closing HTML tag
+
 ## [0.5.1] - 2019-06-03
 ### Fixed
 - Fixed detection of GW presence
