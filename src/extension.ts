@@ -431,7 +431,7 @@ function parseSitemap(file: string) {
         detail: buildLink(base, getUrlPath(link.attributes.href))
       });
 
-      if (getUrlPath(link.attributes.href) === 'gw_dental') {
+      if (getUrlPath(link.attributes.href) === 'health/dental/gw_dental') {
         links.push(...gw_links);
       }
     });
