@@ -432,7 +432,12 @@ function parseSitemap(file: string) {
       });
 
       if (getUrlPath(link.attributes.href) === 'health/dental/gw_dental') {
-        links.push(...gw_links);
+        gw_links.forEach((link: any) => {
+          links.push({
+            label: link.label,
+            detail: buildLink(base, getUrlPath(link.detail))
+          }); 
+        });
       }
     });
   });
