@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.5.1] - 2019-06-03
+### Fixed
+- Fixed detection of GW presence
+
+## [0.5.0] - 2019-06-03
+### Added
+- Add GW links that don't show up in the sitemap
+
 ## [0.4.2] - 2019-04-12
 ### Fixed
 - Catch linking to `/scripts/yaHRSKalender.aspx` and rewrite properly
