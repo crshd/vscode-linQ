@@ -530,7 +530,8 @@ function insertLink() {
             let replacedText: string = editor.document
               .getText(range)
               .replace(/\s*\[.*?\]\s*/, " ")
-              .replace(/\.\s+</, ".<");
+              .replace(/\.\s+</, ".<")
+              .replace(/>\s+</, "><");
             edit.replace(range, replacedText);
           }
         });
