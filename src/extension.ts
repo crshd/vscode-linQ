@@ -460,9 +460,9 @@ function buildLink(base: string, path: string) {
       link = "http:/scripts/yaHRSKalender.aspx"; break;
 
     default:
-      base = (base.indexOf('home.aspx') >= -1) ? 'http:/scripts/show.aspx?content=' : base.replace(/\/$/, '');
+      base = base.replace(/\/$/, '');
       path = path.replace(/^\//, '');
-      link = (base + "/" + path); break;
+      link = (base == path) ? base : (base + "/" + path); break;
   }
 
   return link.replace(/\/\.\//, '/'); // Fix stuff for a certain someone
