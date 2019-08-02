@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.5.6] - 2019-08-01
+### Fixed
+- Fixed building links when own domain is used
+
 ## [0.5.4] - 2019-06-04
 ### Fixed
 - Remove extra spaces between closing anchor and closing wrapper tags
