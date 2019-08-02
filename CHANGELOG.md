@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.5.7] - 2019-08-02
+### Changed
+- Move repository to Azure
+
 ## [0.5.6] - 2019-08-01
 ### Fixed
 - Fixed building links when own domain is used
