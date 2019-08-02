@@ -1,6 +1,30 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.5.4] - 2019-06-04
+### Fixed
+- Remove extra spaces between closing anchor and closing wrapper tags
+
+## [0.5.3] - 2019-06-03
+### Fixed
+- Fixed generation of GW links
+
+## [0.5.2] - 2019-06-03
+### Fixed
+- Remove extra spaces between period and closing HTML tag
+
+## [0.5.1] - 2019-06-03
+### Fixed
+- Fixed detection of GW presence
+
+## [0.5.0] - 2019-06-03
+### Added
+- Add GW links that don't show up in the sitemap
+
+## [0.4.2] - 2019-04-12
+### Fixed
+- Catch linking to `/scripts/yaHRSKalender.aspx` and rewrite properly
+
 ## [0.4.0] - 2019-02-03
 ### Changed
 - Changed namespace to "linq"

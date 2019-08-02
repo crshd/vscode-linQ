@@ -1,0 +1,17 @@
+kind: pipeline
+name: default
+
+steps:
+- name: release
+  image: node
+  environment:
+    PAT:
+      from_secret: PAT
+  commands:
+  - npm install -g vsce
+  - npm install
+  - npm run postinstall
+  - vsce publish -p $PAT
+  when:
+    branch:
+    - master
