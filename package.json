@@ -1,12 +1,12 @@
 {
-  "publisher": "christianbrassat",
+  "publisher": "ieQ-health",
   "name": "linq",
   "displayName": "linQ",
   "description": "",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "repository": {
     "type": "git",
-    "url": "https://git.gamkee.de/ieQ-health/linQ.git"
+    "url": "https://ieq-health.visualstudio.com/linQ/_git/linQ"
   },
   "engines": {
     "vscode": "^1.27.0"

@@ -1,9 +1,17 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
-## [0.5.7] - 2019-09-27
+## [0.5.8] - 2019-09-27
 ### Fixed
 - Fix generation of home.aspx links
+
+## [0.5.7] - 2019-08-02
+### Changed
+- Move repository to Azure
+
+## [0.5.6] - 2019-08-01
+### Fixed
+- Fixed building links when own domain is used
 
 ## [0.5.4] - 2019-06-04
 ### Fixed

@@ -420,7 +420,6 @@ function parseSitemap(file: string) {
   vscode.workspace.openTextDocument(file).then(html => {
     const dom = parse(html.getText());
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
-    const base: string = getUrlBase(map[0].attributes.href)();
 
     // clean old sitemap
     links = [];
