@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.5.7] - 2019-09-27
+### Fixed
+- Fix generation of home.aspx links
+
 ## [0.5.4] - 2019-06-04
 ### Fixed
 - Remove extra spaces between closing anchor and closing wrapper tags
