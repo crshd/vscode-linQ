@@ -426,16 +426,18 @@ function parseSitemap(file: string) {
     links = [];
 
     map.forEach((link: any) => {
+      const path: string = getUrlPath(link.attributes.href);
+
       links.push({
         label: link.text,
-        detail: buildLink(base, getUrlPath(link.attributes.href))
+        detail: buildLink(path)
       });
 
       if (getUrlPath(link.attributes.href) === 'health/dental/gw_dental') {
         gw_links.forEach((link: any) => {
           links.push({
             label: link.label,
-            detail: buildLink(base, getUrlPath(link.detail))
+            detail: buildLink(path)
           }); 
         });
       }
@@ -443,50 +445,15 @@ function parseSitemap(file: string) {
   });
 }
 
-function buildLink(base: string, path: string) {
-  let link: string = '';
-
-  switch (path) {
-    case "":
-      link = base; break;
-  
-    case "home.aspx":
-      link = "http:/home.aspx"; break;
-
-    case "scripts/hrskalender.aspx":
-      link = "http:/scripts/hrskalender.aspx"; break;
-
-    case "scripts/yaHRSKalender.aspx":
-      link = "http:/scripts/yaHRSKalender.aspx"; break;
-
-    default:
-      base = base.replace(/\/$/, '');
-      path = path.replace(/^\//, '');
-      link = (base == path) ? base : (base + "/" + path); break;
-  }
-
+function buildLink(path: string) {
+  let link: string = 'http:/' + path;
   return link.replace(/\/\.\//, '/'); // Fix stuff for a certain someone
 }
 
 function getUrlPath(href: string) {
   return href
-    .replace("/scripts/show.aspx?content=", "")
     .replace(/^\.+\/?/, "")
     .replace(/https?:\/\/.*?\//, "");
-}
-
-function getUrlBase(map: string) {
-  return function() {
-    if (
-      map === "/home.aspx" ||
-      map.indexOf("scripts/show.aspx") >= 0 ||
-      map.indexOf("..") >= 0
-    ) {
-      return "http:/scripts/show.aspx?content=";
-    } else {
-      return map;
-    }
-  };
 }
 
 // Insert link
