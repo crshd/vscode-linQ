@@ -432,11 +432,11 @@ function parseSitemap(file: string) {
         detail: buildLink(path)
       });
 
-      if (getUrlPath(link.attributes.href) === 'health/dental/gw_dental') {
+      if (getUrlPath(link.attributes.href).indexOf('health/dental/gw_dental') >= 0) {
         gw_links.forEach((link: any) => {
           links.push({
             label: link.label,
-            detail: buildLink(path)
+            detail: buildLink('scripts/show.aspx?content=' + link.detail)
           }); 
         });
       }

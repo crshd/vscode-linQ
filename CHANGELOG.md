@@ -1,11 +1,15 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
-## [0.5.9] - 2019-09-27
+## [0.5.10] - 2019-09-19
+### Fixed
+- Fixed generation of GW links
+
+## [0.5.9] - 2019-08-27
 ### Fixed
 - Remove double slash
 
-## [0.5.8] - 2019-09-27
+## [0.5.8] - 2019-08-27
 ### Fixed
 - Fix generation of home.aspx links
 
