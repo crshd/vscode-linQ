@@ -432,7 +432,7 @@ function parseSitemap(file: string) {
         detail: buildLink(path)
       });
 
-      if (getUrlPath(link.attributes.href).indexOf('health/dental/gw_dental') >= 0) {
+      if (getUrlPath(link.attributes.href).endsWith('health/dental/gw_dental')) {
         gw_links.forEach((link: any) => {
           links.push({
             label: link.label,
