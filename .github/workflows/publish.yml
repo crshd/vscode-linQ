@@ -1,0 +1,25 @@
+name: Publish Plugin to Marketplace
+
+on:
+  push:
+    branches:
+      - master
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: npm install
+        uses: actions/npm@master
+        with:
+          args: install --unsafe-perm
+
+      - name: vsce publish
+        uses: JCofman/vscodeaction@1.0.0
+        env:
+          PUBLISHER_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
+        with:
+          args: publish -p $PUBLISHER_TOKEN
