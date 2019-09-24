@@ -290,7 +290,7 @@ let gw_links: any[] = [
   { label: 'Kurzinfo', detail: '/health/dental/gw_dental/vorsorge/eigene_vorsorge/ernaehrung/kurzinfo' },
   { label: 'Säureerosion', detail: '/health/dental/gw_dental/vorsorge/eigene_vorsorge/ernaehrung/saeureerosion' },
   { label: 'Zahnschädigende Lebensmittel', detail: '/health/dental/gw_dental/vorsorge/eigene_vorsorge/ernaehrung/schaedigende_lebensmittel' },
-  { label: 'Was heißt zahngesund?', detail: '/health/dental/gw_dental/vorsorge/eigene_vorsorge/ernaehrung/zahngesund'},
+  { label: 'Was heißt zahngesund?', detail: '/health/dental/gw_dental/vorsorge/eigene_vorsorge/ernaehrung/zahngesund' },
 
   { label: 'Zahnpflegeprodukte', detail: '/health/dental/gw_dental/vorsorge/eigene_vorsorge/pflegeprodukte' },
   { label: 'Checkliste', detail: '/health/dental/gw_dental/vorsorge/eigene_vorsorge/pflegeprodukte/checkliste' },
@@ -418,7 +418,7 @@ function registerSitemap() {
 // Parse sitemap.xml
 function parseSitemap(file: string) {
   vscode.workspace.openTextDocument(file).then(html => {
-    const dom = parse(html.getText());
+    const dom: any = parse(html.getText());
     const map: any[] = dom.querySelectorAll(".sitemap-site a"); // Stupid Typescript... Type Node *does* have attributes
 
     // clean old sitemap
@@ -437,7 +437,7 @@ function parseSitemap(file: string) {
           links.push({
             label: link.label,
             detail: buildLink('scripts/show.aspx?content=' + link.detail)
-          }); 
+          });
         });
       }
     });
@@ -485,8 +485,8 @@ function insertLink() {
             edit.insert(
               selection.start,
               `<a href="${pick.detail}" title="Gehe zu: ${label}">` +
-                editor.document.getText(selection) +
-                "</a>"
+              editor.document.getText(selection) +
+              "</a>"
             );
 
             // remove annotation
@@ -549,4 +549,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }
