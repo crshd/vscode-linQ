@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.5.13] - 2019-10-08
+### Fixed
+- Fix detection of javascript links
+
 ## [0.5.11] - 2019-09-19
 ### Fixed
 - Only add GW links once

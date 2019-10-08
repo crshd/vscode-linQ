@@ -445,7 +445,7 @@ function parseSitemap(file: string) {
 }
 
 function buildLink(path: string) {
-  let link: string = 'http:/' + path;
+  let link: string = path.startsWith('javascript') ? path : 'http:/' + path;
   link = link.replace(/\/+/, '/')
   return link.replace(/\/\.\//, '/'); // Fix stuff for a certain someone
 }

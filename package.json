@@ -3,7 +3,7 @@
   "name": "linq",
   "displayName": "linQ",
   "description": "",
-  "version": "0.5.12",
+  "version": "0.5.13",
   "repository": {
     "type": "git",
     "url": "https://ieq-health.visualstudio.com/linQ/_git/linQ"
