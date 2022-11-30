@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "linq" extension will be documented in this file.
 
+## [0.5.14] - 2022-11-30
+### Added
+- Add `rel="nofollow"` to GW links
+
 ## [0.5.13] - 2019-10-08
 ### Fixed
 - Fix detection of javascript links

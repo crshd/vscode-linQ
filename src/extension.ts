@@ -481,10 +481,11 @@ function insertLink() {
         editor.selections.forEach(selection => {
           /* I'm fucking sure it's not undefined by now */
           if (editor !== undefined) {
+            let rel: string = pick.detail.indexOf('gw_') >= 0 ? ' rel="nofollow"' : '';
             edit.delete(selection);
             edit.insert(
               selection.start,
-              `<a href="${pick.detail}" title="Gehe zu: ${label}">` +
+              `<a href="${pick.detail}" title="Gehe zu: ${label}"${rel}>` +
               editor.document.getText(selection) +
               "</a>"
             );
